@@ -10,6 +10,8 @@ lazy val logbackVersion = "1.2.11"
 lazy val otelVersion = "1.12.0"
 lazy val otelNonStableVersion = "1.12.0-alpha"
 
+fork := true
+
 libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "ch.qos.logback" % "logback-core" % logbackVersion,
