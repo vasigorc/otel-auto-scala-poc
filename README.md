@@ -19,16 +19,7 @@ can be sent to an otel collector without any of the following:
 - We use IntelliJ's sbt runner. Please reproduce the configuration locally
 or adjust your run environment accordingly:
 ![sbt configuration](src/main/resources/images/run-with-instrumentation-configuration.png)
-  - Here is what goes inside VM parameters configuration field:
-  
-  ```shell
-  -Xms512M
-  -Xmx1024M
-  -Xss1M
-  -XX:+CMSClassUnloadingEnabled
-  -javaagent:src/main/resources/opentelemetry-javaagent-all-v1.12.0.jar
-  -Dotel.javaagent.configuration-file=src/main/resources/otel.properties
-   ```
+
   
 ### Run
 
