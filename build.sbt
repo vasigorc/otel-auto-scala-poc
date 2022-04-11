@@ -10,8 +10,6 @@ lazy val logbackVersion = "1.2.11"
 lazy val otelVersion = "1.12.0"
 lazy val otelNonStableVersion = "1.12.0-alpha"
 
-fork := true
-
 libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "ch.qos.logback" % "logback-core" % logbackVersion,
@@ -26,3 +24,12 @@ libraryDependencies ++= Seq(
 )
 
 Compile / mainClass := Some(ourMainClass)
+
+lazy val runWithOtel = taskKey[Unit]("Run application with observability.")
+runWithOtel / fork := true
+runWithOtel / javaOptions ++= Seq(
+  "-javaagent:src/main/resources/opentelemetry-javaagent-all-v1.12.0.jar",
+  "-Dotel.javaagent.configuration-file=src/main/resources/otel.properties"
+)
+fullRunTask(runWithOtel, Compile, ourMainClass)
+
